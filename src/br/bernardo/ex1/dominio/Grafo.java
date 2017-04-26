@@ -45,69 +45,55 @@ public class Grafo {
 		for (Vertice u : vertice) {
 			for (Aresta e : u.adjacencia) {
 				Vertice v = e.getPara();
-<<<<<<< HEAD
-				r += " distancia de: " + e.getDe().getCidade() + " Para: " + e.getPara().getCidade() + " " + e.getPeso();
-=======
+				r += " distancia de: " + e.getDe().getCidade() + " Para: " + e.getPara().getCidade() + " "
+						+ e.getPeso();
 				r += " distancia de: " + e.getDeCidade() + " Para: " + e.getParaCidade() + " " + e.getPeso();
->>>>>>> 67905fdf7c642702ae85565be44e38aac478e64c
 
 			}
 		}
 		System.out.println(r);
 	}
-
+	//Retorna a distancia entre duas cidades
 	public int getDistanciaCidade(Vertice de, Vertice para) {
 		int pesoCaminho = 0;
 		for (Vertice u : vertice) {
 			for (Aresta e : u.adjacencia) {
-				if(e.getDe() == de && e.getPara() == para)
-				{
-<<<<<<< HEAD
-					if(de.getCidade() != e.getDe().getCidade() && para.getCidade() != e.getPara().getCidade() )
-					{
-						System.out.println("DE: " + e.getDe().getCidade() + "PARA: " + e.getPara().getCidade());
-=======
-					if(de.getCidade() != e.getDeCidade() && para.getCidade() != e.getPara().getCidade() )
-					{
-						System.out.println("DE: " + e.getDeCidade() + "PARA: " + e.getParaCidade());
->>>>>>> 67905fdf7c642702ae85565be44e38aac478e64c
+				if (e.getDe() == de && e.getPara() == para) {
+					if (de.getCidade() != e.getDe().getCidade() && para.getCidade() != e.getPara().getCidade()) {
+							System.out.println("DE: " + e.getDeCidade() + "PARA: " + e.getParaCidade());
+						}
+						pesoCaminho = pesoCaminho + e.getPeso();
 					}
-					pesoCaminho = pesoCaminho + e.getPeso();
+				}
+				if (pesquisaLiga(de, para) == false) {
+					return 0;
 				}
 			}
-			if(pesquisaLiga(de, para) == false)
-			{
-				return 0;
-			}
-		}
 		return pesoCaminho;
 	}
-	public boolean pesquisaLiga(Vertice de, Vertice para)
-	{
-		for(int i = 0 ; i < de.adjacencia.size(); i++)
-		{
-			if(de.adjacencia.get(i).getDe() == de && de.adjacencia.get(i).getPara() == para)
-			{
+	/*Pesquisa se existe um caminho de uma cidade para a outra
+	 * 
+	 */
+	public boolean pesquisaLiga(Vertice de, Vertice para) {
+		for (int i = 0; i < de.adjacencia.size(); i++) {
+			if (de.adjacencia.get(i).getDe() == de && de.adjacencia.get(i).getPara() == para) {
 				return true;
 			}
-			
+
 		}
 		return false;
 	}
-	
-	public String getDistanciaCidades(List<Vertice> vertices)
-	{
+	//Retorna a distancia entre mais de duas cidades
+	public String getDistanciaCidades(List<Vertice> vertices) {
 		String r = "";
 		int pesoCaminho = 0;
-		for(int i = 0 ; i < vertices.size() -1; i++)
-		{
-			if(getDistanciaCidade(vertices.get(i), vertices.get(i + 1)) == 0)
-			{
+		for (int i = 0; i < vertices.size() - 1; i++) {
+			if (getDistanciaCidade(vertices.get(i), vertices.get(i + 1)) == 0) {
 				r = "NO SUCH ROUTE";
 				return r;
 			}
 			pesoCaminho = pesoCaminho + getDistanciaCidade(vertices.get(i), vertices.get(i + 1));
-			
+
 		}
 		r = "" + pesoCaminho;
 		return r;
