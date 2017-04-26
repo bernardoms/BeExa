@@ -45,7 +45,11 @@ public class Grafo {
 		for (Vertice u : vertice) {
 			for (Aresta e : u.adjacencia) {
 				Vertice v = e.getPara();
+<<<<<<< HEAD
+				r += " distancia de: " + e.getDe().getCidade() + " Para: " + e.getPara().getCidade() + " " + e.getPeso();
+=======
 				r += " distancia de: " + e.getDeCidade() + " Para: " + e.getParaCidade() + " " + e.getPeso();
+>>>>>>> 67905fdf7c642702ae85565be44e38aac478e64c
 
 			}
 		}
@@ -58,9 +62,15 @@ public class Grafo {
 			for (Aresta e : u.adjacencia) {
 				if(e.getDe() == de && e.getPara() == para)
 				{
+<<<<<<< HEAD
+					if(de.getCidade() != e.getDe().getCidade() && para.getCidade() != e.getPara().getCidade() )
+					{
+						System.out.println("DE: " + e.getDe().getCidade() + "PARA: " + e.getPara().getCidade());
+=======
 					if(de.getCidade() != e.getDeCidade() && para.getCidade() != e.getPara().getCidade() )
 					{
 						System.out.println("DE: " + e.getDeCidade() + "PARA: " + e.getParaCidade());
+>>>>>>> 67905fdf7c642702ae85565be44e38aac478e64c
 					}
 					pesoCaminho = pesoCaminho + e.getPeso();
 				}
