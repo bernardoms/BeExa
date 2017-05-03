@@ -1,11 +1,12 @@
 package br.bernardo.problema2.dominio;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
 	public static void main(String[] args) {
-		ArrayList<Palestra> conferencia = new ArrayList<>();
+		List<Palestra> conferencia = new ArrayList<>();
 		Palestra palestra = new Palestra("Writing Fast Tests Against Enterprise Rails", 60);
 		Palestra palestra2 = new Palestra("Overdoing it in Python", 45);
 		Palestra palestra3 = new Palestra("Lua for the Masses", 30);
@@ -48,9 +49,7 @@ public class Main {
 		c.OrganizaConferencia();
 		for(int i = 0 ; i< c.getTracks(); i++)
 		{
-			c.OrganizaPalestra();
+			c.OrganizaPalestra(i);
 		}
-
 	}
-
 }
