@@ -48,15 +48,23 @@ public class Main {
 	        caminhoAEBCD.add(B);
 	        caminhoAEBCD.add(C);
 	        caminhoAEBCD.add(D);
-	        
+	
+	       Dijkstra dij = new Dijkstra();
+	       DFS dfs = new DFS();
 	       System.out.println(g);     
-	       System.out.println(g.getDistanciaCidades(caminhoABC));
-	       System.out.println(g.getDistanciaCidades(caminhoAD));
-	       System.out.println(g.getDistanciaCidades(caminhoADC));
-	       System.out.println(g.getDistanciaCidades(caminhoAEBCD));
-	       System.out.println(g.getDistanciaCidades(caminhoAED));
-	        g.printaGrafo();
+	       System.out.println("OUTPUT #1:" + g.getDistanciaCidades(caminhoABC));
+	       System.out.println("OUTPUT #2:" + g.getDistanciaCidades(caminhoAD));
+	       System.out.println("OUTPUT #3:" + g.getDistanciaCidades(caminhoADC));
+	       System.out.println("OUTPUT #4:" + g.getDistanciaCidades(caminhoAEBCD));
+	       System.out.println("OUTPUT #5:" + g.getDistanciaCidades(caminhoAED));
+	       System.out.println("OUTPUT #6:" + dfs.Dfs(g,C, C,3));
+	       System.out.println("OUTPUT #7:");
+	       System.out.println("OUTPUT #8:"+ dij.encontrarMenorCaminhoDijkstra(g, A, C));
+	       //System.out.println("Peso do Caminho: " + dij.encontrarMenorCaminhoDijkstra(g, B, B));
+	       //dij.pesoMenorCaminho(dij.encontrarMenorCaminhoDijkstra(g, B, B));
+	       // g.Dijkstra(g, 5);
 
 	}
+	
 
 }

@@ -3,11 +3,12 @@ package br.bernardo.ex1.dominio;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.PriorityQueue;
 
 public class Grafo {
 	List<Vertice> vertice;
 	List<Aresta> aresta;
-
+	private int menorCaminho = 0;
 	public Grafo() {
 		vertice = new ArrayList<Vertice>();
 		aresta = new ArrayList<Aresta>();
@@ -41,37 +42,39 @@ public class Grafo {
 
 	public void printaGrafo() {
 		String r = "";
-		String distancia = "";
 		for (Vertice u : vertice) {
 			for (Aresta e : u.adjacencia) {
 				Vertice v = e.getPara();
 				r += " distancia de: " + e.getDe().getCidade() + " Para: " + e.getPara().getCidade() + " "
 						+ e.getPeso();
-				r += " distancia de: " + e.getDeCidade() + " Para: " + e.getParaCidade() + " " + e.getPeso();
+				r += " distancia de: " + e.getDe() + " Para: " + e.getPara() + " " + e.getPeso();
 
 			}
 		}
 		System.out.println(r);
 	}
-	//Retorna a distancia entre duas cidades
+
+	// Retorna a distancia entre duas cidades
 	public int getDistanciaCidade(Vertice de, Vertice para) {
 		int pesoCaminho = 0;
 		for (Vertice u : vertice) {
 			for (Aresta e : u.adjacencia) {
 				if (e.getDe() == de && e.getPara() == para) {
 					if (de.getCidade() != e.getDe().getCidade() && para.getCidade() != e.getPara().getCidade()) {
-							System.out.println("DE: " + e.getDeCidade() + "PARA: " + e.getParaCidade());
-						}
-						pesoCaminho = pesoCaminho + e.getPeso();
+						System.out.println("DE: " + e.getDe().getCidade() + "PARA: " + e.getPara().getCidade());
 					}
-				}
-				if (pesquisaLiga(de, para) == false) {
-					return 0;
+					pesoCaminho = pesoCaminho + e.getPeso();
 				}
 			}
+			if (pesquisaLiga(de, para) == false) {
+				return 0;
+			}
+		}
 		return pesoCaminho;
 	}
-	/*Pesquisa se existe um caminho de uma cidade para a outra
+
+	/*
+	 * Pesquisa se existe um caminho de uma cidade para a outra
 	 * 
 	 */
 	public boolean pesquisaLiga(Vertice de, Vertice para) {
@@ -83,7 +86,8 @@ public class Grafo {
 		}
 		return false;
 	}
-	//Retorna a distancia entre mais de duas cidades
+
+	// Retorna a distancia entre mais de duas cidades
 	public String getDistanciaCidades(List<Vertice> vertices) {
 		String r = "";
 		int pesoCaminho = 0;
@@ -99,4 +103,25 @@ public class Grafo {
 		return r;
 	}
 
+	public int retornaIndiceDoCaminho(Vertice de) {
+		for (int i = 0; i < this.aresta.size(); i++) {
+			if (this.aresta.get(i).getDe() == de) {
+				return i;
+			}
+		}
+		return 0;
+	}
+
+
+	public int getMenorCaminho() {
+		return menorCaminho;
+	}
+
+	public void setMenorCaminho(int menorCaminho) {
+		this.menorCaminho = menorCaminho;
+	}
+	public List<Vertice> getVertices()
+	{
+		return this.vertice;
+	}
 }

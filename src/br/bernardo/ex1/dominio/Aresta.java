@@ -18,14 +18,6 @@ public class Aresta {
 	{
 		return this.de;
 	}
-	public String getParaCidade()
-	{
-		return this.para.getCidade();
-	}
-	public String getDeCidade()
-	{
-		return this.de.getCidade();
-	}
 	public int getPeso()
 	{
 		return this.peso;
